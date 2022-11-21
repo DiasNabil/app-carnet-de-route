@@ -4,13 +4,13 @@ import { Note } from 'src/app/note';
 
 
 @Component({
-  selector: 'app-notes-list',
-  templateUrl: './notes-list.component.html',
-  styleUrls: ['./notes-list.component.scss']
+  selector: 'app-maintag-list',
+  templateUrl: './maintag-list.component.html',
+  styleUrls: ['./maintag-list.component.scss']
 })
 
 
-export class NotesListComponent {
+export class MainTagListComponent {
 
   noteList:Note[] = NOTES
 

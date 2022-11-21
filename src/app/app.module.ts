@@ -5,7 +5,7 @@ import * as fr from '@angular/common/locales/fr'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NotesListComponent } from './pages/notes-list/notes-list.component';
+import { MainTagListComponent } from './pages/maintag-list/maintag-list.component';
 import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 import { NoteCardComponent } from './note-card/note-card.component';
 
@@ -14,7 +14,7 @@ import { NoteCardComponent } from './note-card/note-card.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NotesListComponent,
+    MainTagListComponent,
     MainLayoutComponent,
     NoteCardComponent
   ],
