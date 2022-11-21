@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainTagListComponent } from './pages/maintag-list/maintag-list.component';
 import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
-import { NoteCardComponent } from './note-card/note-card.component';
+import { TagCardComponent } from './tag-card/tag-card.component';
 
 
 
@@ -16,7 +16,7 @@ import { NoteCardComponent } from './note-card/note-card.component';
     AppComponent,
     MainTagListComponent,
     MainLayoutComponent,
-    NoteCardComponent
+    TagCardComponent
   ],
   imports: [
     BrowserModule,

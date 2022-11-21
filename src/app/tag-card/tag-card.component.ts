@@ -5,11 +5,11 @@ import { Note } from '../note';
 
 
 @Component({
-  selector: 'app-note-card',
-  templateUrl: './note-card.component.html',
-  styleUrls: ['./note-card.component.scss']
+  selector: 'app-tag-card',
+  templateUrl: './tag-card.component.html',
+  styleUrls: ['./tag-card.component.scss']
 })
-export class NoteCardComponent implements OnInit{
+export class TagCardComponent implements OnInit{
 
   @Input() note: Note 
   @Input() mainTag: Note[]
