@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+* {
+    font-family: Roboto, Helvetica, sans-serif;
+  }
+
+  body{
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    overflow-x: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
