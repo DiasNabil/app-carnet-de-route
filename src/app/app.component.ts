@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NOTES } from './note-list';
-import { Note } from './note';
+
+
 
 /**
  * @Component decorateur qui permet de construire un composent web 

@@ -6,8 +6,9 @@ import * as fr from '@angular/common/locales/fr'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainTagListComponent } from './pages/maintag-list/maintag-list.component';
-import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 import { TagCardComponent } from './tag-card/tag-card.component';
+import { NoteListComponent } from './pages/note-list/note-list.component';
+import { NoteCardComponent } from './note-card/note-card.component';
 
 
 
@@ -15,8 +16,9 @@ import { TagCardComponent } from './tag-card/tag-card.component';
   declarations: [
     AppComponent,
     MainTagListComponent,
-    MainLayoutComponent,
-    TagCardComponent
+    TagCardComponent,
+    NoteListComponent,
+    NoteCardComponent
   ],
   imports: [
     BrowserModule,
