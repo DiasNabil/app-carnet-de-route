@@ -1,6 +1,6 @@
 export class Note {
     id: number;
     title: Date;
-    theme: Array<string>;
+    tag: Array<string>;
     content: string;
 }

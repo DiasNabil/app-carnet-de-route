@@ -5,10 +5,7 @@
     </div>
 
     <div class="notes-list">
-        <app-note-card></app-note-card>
-        <app-note-card></app-note-card>
-        <app-note-card></app-note-card>
-        <app-note-card></app-note-card>
+        <app-note-card *ngFor="let tag of mainTag" [mainTag]="tag"></app-note-card>
     </div>
 
      
