@@ -3,12 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import {registerLocaleData} from '@angular/common'
 import * as fr from '@angular/common/locales/fr'
 
+
+/** formulaire angular avec directive propre au fomulaire, permet de convertir les <form> en {formulaire} angular */
+import { FormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainTagListComponent } from './pages/maintag-list/maintag-list.component';
-import { TagCardComponent } from './tag-card/tag-card.component';
+import { TagCardComponent } from './pages/maintag-list/tag-card/tag-card.component';
 import { NoteListComponent } from './pages/note-list/note-list.component';
-import { NoteCardComponent } from './note-card/note-card.component';
+import { NoteCardComponent } from './pages/note-list/note-card/note-card.component';
+import { NoteDetailsComponent } from './pages/note-details/note-details.component';
 
 
 
@@ -18,11 +23,13 @@ import { NoteCardComponent } from './note-card/note-card.component';
     MainTagListComponent,
     TagCardComponent,
     NoteListComponent,
-    NoteCardComponent
+    NoteCardComponent,
+    NoteDetailsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR'}

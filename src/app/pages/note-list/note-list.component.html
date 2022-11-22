@@ -5,7 +5,7 @@
     </div>
 
     <div class="notes-list">
-        <app-note-card *ngFor="let note of diplayedNotes" [note]="note"></app-note-card>
+        <app-note-card *ngFor="let note of noteList" [routerLink]="note.id.toString()" [note]="note"></app-note-card>
     </div>
 
      

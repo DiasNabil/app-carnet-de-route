@@ -1,8 +1,6 @@
-
-
-export class Note {
+export class newNote {
     id: number;
     title: Date;
-    tag: Array<string>;
+    tag: string;
     content: string;
 }

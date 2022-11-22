@@ -27,5 +27,30 @@
         flex-direction: column;   
         
     }
+
+    button {
+        background: #dfdfdf;
+        border-radius: 5px;
+        border: none;
+        font-size: 3rem;
+        
+        box-shadow: 0px 1px 2em rgba($color: #2b2c2e, $alpha: 0.4);
+        width: 40%;
+        margin: 3rem auto;
+        padding: 1rem;
+        transition: 1000ms;
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover{
+            transform: scale(0.98);
+            box-shadow: 0px 5px 1em rgba($color: #2b2c2e, $alpha: 0.5);
+            
+        }
+    
+    }
     
  }

@@ -1,0 +1,29 @@
+.note-card-container{
+    background: #dfdfdf;
+    border-radius: 5px;
+    box-shadow: 0px 1px 2em rgba($color: #2b2c2e, $alpha: 0.3);
+    width: 40%;
+    margin: 1.5rem auto;
+    transition: 1000ms;
+    cursor: pointer;
+    position: relative;
+
+    &:hover{
+        transform: scale(0.98);
+        box-shadow: 0px 5px 1em rgba($color: #2b2c2e, $alpha: 0.5);
+        
+    }
+    
+
+    .note-card-content{
+        padding: 25px;
+        color: #2b2c2e;
+
+        .note-card-title{
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        
+        }
+    }
+
+}

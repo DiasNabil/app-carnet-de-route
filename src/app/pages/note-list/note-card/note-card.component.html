@@ -1,7 +1,8 @@
-<div #container class="note-card-container">
+<div class="note-card-container" >
 
     <div class="note-card-content">
         <h1 class="note-card-title">{{note.title | date}}</h1>
+        <h2 class="note-card-title">{{note.tag.join(' - ')}}</h2>
 
 
         <div class="note-card-body">

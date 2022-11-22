@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-
+import { NotesService } from './services/note.service';
 
 /**
  * @Component decorateur qui permet de construire un composent web 
@@ -19,6 +19,9 @@ import { Component, OnInit, Input } from '@angular/core';
 
 export class AppComponent implements OnInit {
 
+  constructor(private notesService: NotesService) {}
 
-  ngOnInit(){}
+  ngOnInit(){
+    console.log(this.notesService.arrayNotes)
+  }
 }

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { NotesService } from 'src/app/services/note.service';
 import { Note } from 'src/app/models/note.model';
 
@@ -9,12 +11,19 @@ import { Note } from 'src/app/models/note.model';
 })
 
 
-export class NoteListComponent {
+export class NoteListComponent implements OnInit{
 
-  constructor(private notesService: NotesService){}
+  noteList: Note[]
 
-  noteList:Note[] = this.notesService.getAllNotes()
+  constructor(private notesService: NotesService,  private route: ActivatedRoute){}
 
-  diplayedNotes:Note[] = this.noteList.filter(note => note.tag[0] === 'prog')
+  ngOnInit(): void {
+
+    const tag = this.route.snapshot.params['tag']
+
+    this.noteList = this.notesService.getByTag(tag) 
+    
+  }
+
 
 }

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import {Router} from '@angular/router'
 
-import { NotesService } from '../services/note.service';
+import { NotesService } from '../../../services/note.service';
 import { Note } from 'src/app/models/note.model';
 
 
@@ -18,7 +19,7 @@ export class TagCardComponent implements OnInit{
   tagName: string 
   nbNote: number
 
-  constructor(private notesService: NotesService){}
+  constructor(private notesService: NotesService, private router: Router){}
   
   ngOnInit(): void {
 
@@ -27,7 +28,11 @@ export class TagCardComponent implements OnInit{
    
   }
 
+  onClickTagCard(){
 
+    this.router.navigateByUrl(`${this.tagName}`)
+
+  }
 
   
 }
