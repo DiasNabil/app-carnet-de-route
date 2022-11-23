@@ -26,7 +26,7 @@ export class MainTagListComponent implements OnInit{
     this.getMainTag('prog')
     this.getMainTag('figure')
     this.getMainTag('macro')
-    this.mainTag.push({tag:'all', array: this.notesService.getAllNotes()})
+    this.mainTag.push({tag:'all notes', array: this.notesService.getAllNotes()})
 
   }
 

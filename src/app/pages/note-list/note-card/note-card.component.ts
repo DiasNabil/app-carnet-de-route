@@ -26,7 +26,6 @@ if(this.route.snapshot.params['tag']==='all'){
   this.noteList.splice(this.noteList.indexOf(this.note),1)
 
 }
-console.log(this.notesService.arrayNotes)
 }
 
 
