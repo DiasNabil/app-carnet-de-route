@@ -61,7 +61,7 @@ export class NotesService{
         {
             id:7,
             title: new Date(),
-            tag: ['figure', 'l-sit'],
+            tag: [],
             content: "j'ai fait l-sit ce jour",
         },
     
@@ -75,7 +75,7 @@ export class NotesService{
         {
             id:9,
             title: new Date(),
-            tag: ['macro'],
+            tag: [],
             content: "ce que j'ai mangé ce jour",
         },
     
@@ -89,14 +89,14 @@ export class NotesService{
         {
             id:11,
             title: new Date(),
-            tag: ['macro'],
+            tag: [],
             content: "ce que j'ai mangé ce jour",
         },
 
         {
             id:12,
             title: new Date(),
-            tag: ['macro'],
+            tag: [],
             content: "ce que j'ai mangé ce jour",
         },
 
