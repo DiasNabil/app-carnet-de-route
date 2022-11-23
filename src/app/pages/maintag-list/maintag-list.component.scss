@@ -3,21 +3,12 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
+
+
+    border: red solid;
     
     
     margin: auto;
-
-    .search-bar {
-        width: 50%;
-        height: 3rem;
-        input{
-            width: 100%;
-            height: 100%;
-
-            font-size: 1.5rem;
-            
-        }
-    }
 
     .notes-list{
         width: 100%;
