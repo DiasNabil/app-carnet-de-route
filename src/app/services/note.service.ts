@@ -119,6 +119,10 @@ export class NotesService{
         return this.arrayNotes
     }
 
+    getNoteWoTag(){
+        return this.getAllNotes().filter(note => note.tag.length === 0)
+    }
+
 
     getByTag(tag: string){
         

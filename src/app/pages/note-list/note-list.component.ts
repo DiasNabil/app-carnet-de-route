@@ -22,7 +22,10 @@ export class NoteListComponent implements OnInit{
     const tag = this.route.snapshot.params['tag']
     if(tag === 'all'){
       this.noteList = this.notesService.getAllNotes()
-    }else{
+    }else if (tag === 'notag'){
+      this.noteList = this.notesService.getNoteWoTag()
+      console.log(this.noteList)
+    }else {
       this.noteList = this.notesService.getByTag(tag).array
     }
     

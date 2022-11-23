@@ -1,4 +1,4 @@
-<div (click)="onClickTagCard()"  class="note-card-container">
+<div *ngIf="nbNote !==0"   (click)="onClickTagCard()"  class="note-card-container">
 
     <div class="note-card-content">
         <h1 class="note-card-title">{{tagName | uppercase}}</h1>

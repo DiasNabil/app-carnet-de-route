@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import {Router} from '@angular/router'
 
 import { NotesService } from '../../../services/note.service';
@@ -29,7 +29,13 @@ export class TagCardComponent implements OnInit{
 
   onClickTagCard(){
 
-    this.router.navigateByUrl(`${this.tagName}`)
+    if(this.tagName === 'to assign'){
+      this.router.navigateByUrl(`notag`)
+    }
+    else{
+      this.router.navigateByUrl(`${this.tagName}`)
+    }
+    
 
   }
 

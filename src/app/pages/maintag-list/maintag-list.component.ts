@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class MainTagListComponent implements OnInit{
 
   mainTag: {tag: string, array: Note[]}[]
+  
 
   constructor(private notesService: NotesService, private router: Router){}
 
@@ -21,6 +22,7 @@ export class MainTagListComponent implements OnInit{
   ngOnInit(): void {
  
     this.mainTag = []
+    this.mainTag.push({tag:'to assign', array: this.notesService.getNoteWoTag()})
     this.getMainTag('prog')
     this.getMainTag('figure')
     this.getMainTag('macro')

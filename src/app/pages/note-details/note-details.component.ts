@@ -39,37 +39,42 @@ export class NoteDetailsComponent implements OnInit{
         this.isNew = false
       } else {
         this.isNew = true
-        
+
       }
+
     })
 
      
   }
 
   onSubmit(form: NgForm){
+  
+    let tag: Array<string> = this.arrTag(this.tagString)
+
+    this.notesService.addNote(form.value, tag)
+    
+    if(this.isNew === true){
+      this.router.navigateByUrl('/')
+    }else{
+      this.router.navigateByUrl('../')
+    }
+  }
+
+
   /**
    * 
    * @param tag chaine de caractere pris dans le input tag
    * @returns un tableau des caractere 
    * 
-   */
-   let arrTag = (tag: string)=>{
-      return tag.toLowerCase().split(' ').filter(e => e !== '')
-    }
-  
-    let tag: Array<string> = arrTag(this.tagString)
-
-    if(this.isNew){
-
-    this.notesService.addNote(form.value, tag)
-    
-  }else{
-    this.notesService.update(this.noteId, tag, form.value.content)
-    
+  */
+  arrTag(tag: string){
+    return tag.toLowerCase().split(' ').filter(e => e !== '')
   }
 
-  this.router.navigateByUrl('/')
-  console.log(this.notesService.arrayNotes)
+  updateTag(tagString :string){
+
+    let convertTag = this.arrTag(tagString)
+    this.notesService.update(this.noteId, convertTag, this.note.content)
 
   }
 }

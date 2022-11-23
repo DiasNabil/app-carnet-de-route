@@ -13,10 +13,15 @@ export class NoteCardComponent {
   constructor (private notesService : NotesService, private router : Router, private route : ActivatedRoute){}
 
 @Input() note:Note
+@Input() noteList:Note[]
 
 
 onClickDelete(){
-/** faire attention a bien recuperer l'id de arrayNotes et pas array du maintag */
+/** ca supprime par deux dans /all? */
+  this.notesService.delete(this.noteList.indexOf(this.note))
+  this.noteList.splice(this.noteList.indexOf(this.note),1)
+
+  console.log(this.notesService.arrayNotes)
 }
 
 
