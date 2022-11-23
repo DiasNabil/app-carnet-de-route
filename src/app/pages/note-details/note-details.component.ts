@@ -39,6 +39,7 @@ export class NoteDetailsComponent implements OnInit{
         this.isNew = false
       } else {
         this.isNew = true
+        
       }
     })
 

@@ -115,21 +115,6 @@ export class NotesService{
         },
     ]
 
-    arrayMainTag:{tag: string, array: Note[]}[]= [
-        {
-            tag: 'prog',
-            array: this.getByTag('prog')
-        },
-        {
-            tag:'figure',
-            array: this.getByTag('figure')
-        },
-        {
-            tag:'macro',
-            array: this.getByTag('macro')
-        }
-    ]
-
     getAllNotes(){
         return this.arrayNotes
     }
@@ -137,10 +122,13 @@ export class NotesService{
 
     getByTag(tag: string){
         
-        const notesBytag = this.arrayNotes.filter(note => note.tag.find(elem => elem === tag))
-
-
-        return notesBytag
+        let notesBytag: Note[] = this.arrayNotes.filter(note => note.tag.find(elem => elem === tag))
+        
+        notesBytag.forEach(note=>note.tag.sort((a,b)=>{
+                            if(b===tag){return 1}else return -1
+        }))
+        
+        return {tag: tag, array: notesBytag}
     }
 
     getByIndex(index :number){

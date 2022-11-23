@@ -15,13 +15,13 @@
                 <textarea class="textarea" name="content" [(ngModel)] ="note.content"></textarea>
             </div>
 
-            <button class="save-btn" type="submit" [disabled]="!noteForm.valid">SAVE</button>
+            <button *ngIf="isNew===true" class="save-btn" type="submit" [disabled]="!noteForm.valid">SAVE</button>
         </form>
         
     </div>
 
 
-    <button class="delete-button" routerLink="/" type="button">X</button>
+    <button class="delete-button" routerLink="/:tag" type="button">X</button>
     
 
 </div>

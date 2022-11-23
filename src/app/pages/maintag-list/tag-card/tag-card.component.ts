@@ -13,7 +13,6 @@ import { Note } from 'src/app/models/note.model';
 })
 export class TagCardComponent implements OnInit{
 
-  @Input() note: Note 
   @Input() byTag: {tag: string, array: Note[]}
 
   tagName: string 
@@ -24,7 +23,7 @@ export class TagCardComponent implements OnInit{
   ngOnInit(): void {
 
    this.tagName = this.byTag.tag
-   this.nbNote = this.notesService.getByTag(this.tagName).length
+   this.nbNote = this.byTag.array.length
    
   }
 

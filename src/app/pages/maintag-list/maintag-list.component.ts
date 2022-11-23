@@ -20,7 +20,18 @@ export class MainTagListComponent implements OnInit{
 
   ngOnInit(): void {
  
-    this.mainTag = this.notesService.arrayMainTag
+    this.mainTag = []
+    this.getMainTag('prog')
+    this.getMainTag('figure')
+    this.getMainTag('macro')
+    this.mainTag.push({tag:'all', array: this.notesService.getAllNotes()})
+
+  }
+
+  getMainTag(tag: string){
+
+    let arrayOfTag = this.notesService.getByTag(tag)
+    this.mainTag.push(arrayOfTag)
   }
 
 }
