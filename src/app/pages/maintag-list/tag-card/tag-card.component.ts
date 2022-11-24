@@ -34,6 +34,8 @@ export class TagCardComponent implements OnInit{
     }
     else if(this.tagName === 'all notes'){
       this.router.navigateByUrl(`all`)
+    }else if(this.tagName === 'all tag'){
+      this.router.navigateByUrl(`alltag`)
     }else{
       this.router.navigateByUrl(`${this.tagName}`)
     }

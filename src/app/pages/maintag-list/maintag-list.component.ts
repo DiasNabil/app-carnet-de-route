@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NotesService } from 'src/app/services/note.service';
 import { Note } from 'src/app/models/note.model';
-import { Router } from '@angular/router'; 
+import { ActivatedRoute, Router } from '@angular/router'; 
 
 
 @Component({
@@ -15,19 +15,20 @@ export class MainTagListComponent implements OnInit{
 
   mainTag: {tag: string, array: Note[]}[]
   
-
-  constructor(private notesService: NotesService, private router: Router){}
+  
+  
+  constructor(private notesService: NotesService, private router: Router, private route: ActivatedRoute){}
 
 
   ngOnInit(): void {
- 
-    this.mainTag = []
+    this.mainTag = []    
+    
     this.mainTag.push({tag:'to assign', array: this.notesService.getNoteWoTag()})
     this.getMainTag('prog')
     this.getMainTag('figure')
     this.getMainTag('macro')
-    this.mainTag.push({tag:'all notes', array: this.notesService.getAllNotes()})
 
+    this.mainTag.push({tag:'all notes', array: this.notesService.getAllNotes()})
   }
 
   getMainTag(tag: string){
