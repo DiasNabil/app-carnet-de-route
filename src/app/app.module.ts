@@ -2,6 +2,7 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {registerLocaleData} from '@angular/common'
 import * as fr from '@angular/common/locales/fr'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 /** formulaire angular avec directive propre au fomulaire, permet de convertir les <form> en {formulaire} angular */
@@ -29,7 +30,8 @@ import { NoteDetailsComponent } from './pages/note-details/note-details.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR'}

@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { NotesService } from './services/note.service';
 
@@ -19,9 +20,20 @@ import { NotesService } from './services/note.service';
 
 export class AppComponent implements OnInit {
 
-  constructor(private notesService: NotesService) {}
+  constructor(private notesService:NotesService, private router: Router, private route: ActivatedRoute){}
+
 
   ngOnInit(){
-    console.log(this.notesService.arrayNotes)
+    
+  }
+
+  test(string: any){
+    let test: string
+    
+    
+    test = string.target.value.toLowerCase().trim()
+    this.router.navigateByUrl(test)
+    console.log(test)
+
   }
 }

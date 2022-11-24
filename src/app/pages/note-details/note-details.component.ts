@@ -49,7 +49,7 @@ export class NoteDetailsComponent implements OnInit{
 
   onSubmit(form: NgForm){
   
-    let tag: Array<string> = this.arrTag(this.tagString)
+    let tag: Array<string> = this.notesService.tagsToArray(this.tagString)
 
     this.notesService.addNote(form.value, tag)
     
@@ -61,19 +61,10 @@ export class NoteDetailsComponent implements OnInit{
   }
 
 
-  /**
-   * 
-   * @param tag chaine de caractere pris dans le input tag
-   * @returns un tableau des caractere 
-   * 
-  */
-  arrTag(tag: string){
-    return tag.toLowerCase().split(' ').filter(e => e !== '')
-  }
 
   updateTag(tagString :string){
 
-    let convertTag = this.arrTag(tagString)
+    let convertTag = this.notesService.tagsToArray(tagString)
     this.notesService.update(this.noteId, convertTag, this.note.content)
 
   }

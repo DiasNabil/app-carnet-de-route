@@ -6,7 +6,7 @@ import { NoteListComponent } from './pages/note-list/note-list.component';
 
 const routes: Routes = [
   {path:'', component: MainTagListComponent},
-  {path:'alltag', component: MainTagListComponent},
+  {path:'tag', component: MainTagListComponent},
   {path: 'new', component: NoteDetailsComponent},
   {path: ':tag', component: NoteListComponent},
   {path: ':tag/:id', component: NoteDetailsComponent}

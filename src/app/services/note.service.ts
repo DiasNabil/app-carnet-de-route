@@ -115,6 +115,7 @@ export class NotesService{
         },
     ]
 
+
     getAllNotes(){
         return this.arrayNotes
     }
@@ -176,9 +177,21 @@ export class NotesService{
         this.arrayNotes.splice(id, 1)
     }
 
-    /**fonction super longue (surement) pour rien a voir pour la factoriser 
-     * avoir un tableau de tout les tag utiliser
-    */
+    /**
+   * 
+   * @param tag chaine de caractere pris dans le input tag
+   * @returns un tableau des caractere 
+   * 
+  */
+    tagsToArray(tag: string){
+
+        let arrTag: Set<string> = new Set()
+        tag.toLowerCase().split(' ').filter(e => e !== '').forEach(tag=> arrTag.add(tag))
+
+        return Array.from(arrTag)
+    }
+
+    
     getArrOfAllTag(){
         let allTag:string[] = []
 
@@ -187,19 +200,12 @@ export class NotesService{
 
         
 
-        let sansDouble:string[] = []
+        let sansDouble:Set<string> = new Set()
 
-        for(let i = 0; i <= allTag.length ; i++){
-
-            if(allTag[i]!==allTag[i+1]){
-              //array.splice(array[i],1)
-    
-              sansDouble.push(allTag[i])
-            }
-        }
+        allTag.forEach(tag => sansDouble.add(tag))
 
 
-        return sansDouble
+        return Array.from(sansDouble)
     
     }
 
