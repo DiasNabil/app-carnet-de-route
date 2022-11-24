@@ -61,7 +61,7 @@ export class NotesService{
         {
             id:7,
             title: new Date(),
-            tag: ['figure', 'l-sit'],
+            tag: [],
             content: "j'ai fait l-sit ce jour",
         },
     
@@ -75,7 +75,7 @@ export class NotesService{
         {
             id:9,
             title: new Date(),
-            tag: ['macro'],
+            tag: [],
             content: "ce que j'ai mangé ce jour",
         },
     
@@ -89,14 +89,14 @@ export class NotesService{
         {
             id:11,
             title: new Date(),
-            tag: ['macro'],
+            tag: [],
             content: "ce que j'ai mangé ce jour",
         },
 
         {
             id:12,
             title: new Date(),
-            tag: ['macro'],
+            tag: [],
             content: "ce que j'ai mangé ce jour",
         },
 
@@ -118,6 +118,7 @@ export class NotesService{
     getAllNotes(){
         return this.arrayNotes
     }
+
 
     getNoteWoTag(){
         return this.getAllNotes().filter(note => note.tag.length === 0)
@@ -174,5 +175,44 @@ export class NotesService{
     delete(id: number){
         this.arrayNotes.splice(id, 1)
     }
+
+    /**fonction super longue (surement) pour rien a voir pour la factoriser 
+     * avoir un tableau de tout les tag utiliser
+    */
+    getArrOfAllTag(){
+        let allTag:string[] = []
+
+        this.arrayNotes.forEach(note=>allTag= allTag.concat(note.tag))
+        allTag.sort((a,b)=>a.localeCompare(b,'fr'))
+
+        
+
+        let sansDouble:string[] = []
+
+        for(let i = 0; i <= allTag.length ; i++){
+
+            if(allTag[i]!==allTag[i+1]){
+              //array.splice(array[i],1)
     
-} 
+              sansDouble.push(allTag[i])
+            }
+        }
+
+
+        return sansDouble
+    
+    }
+
+    getAllNotesByTag(){
+        let allTag:{tag: string, array: Note[]}[]=[]
+
+        let arrTag: string[] = this.getArrOfAllTag()
+        arrTag.forEach(tag => allTag.push(this.getByTag(tag)))
+        
+        return allTag
+    }
+}
+
+
+    
+

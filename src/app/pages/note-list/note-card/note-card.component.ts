@@ -18,10 +18,14 @@ export class NoteCardComponent {
 
 onClickDelete(){
 /** ca supprime par deux dans /all? */
+
+if(this.route.snapshot.params['tag']==='all'){
   this.notesService.delete(this.noteList.indexOf(this.note))
+}else{
+  this.notesService.delete(this.notesService.arrayNotes.indexOf(this.note))
   this.noteList.splice(this.noteList.indexOf(this.note),1)
 
-  console.log(this.notesService.arrayNotes)
+}
 }
 
 
