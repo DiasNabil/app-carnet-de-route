@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Note } from '../../../models/note.model';
-import { NotesService } from 'src/app/services/note.service';
+import { Note } from '../../../note/models/note.model';
+import { NotesService } from 'src/app/note/services/note.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

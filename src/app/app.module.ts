@@ -10,28 +10,22 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainTagListComponent } from './pages/maintag-list/maintag-list.component';
-import { TagCardComponent } from './pages/maintag-list/tag-card/tag-card.component';
-import { NoteListComponent } from './pages/note-list/note-list.component';
-import { NoteCardComponent } from './pages/note-list/note-card/note-card.component';
-import { NoteDetailsComponent } from './pages/note-details/note-details.component';
+import { NoteModule } from './note/note.module';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainTagListComponent,
-    TagCardComponent,
-    NoteListComponent,
-    NoteCardComponent,
-    NoteDetailsComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NoteModule,
     FormsModule,
     BrowserAnimationsModule,
+    
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR'}

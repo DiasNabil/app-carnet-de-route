@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import {Router} from '@angular/router'
 
 import { NotesService } from '../../../services/note.service';
-import { Note } from 'src/app/models/note.model';
+import { Note } from 'src/app/note/models/note.model';
 
 
 

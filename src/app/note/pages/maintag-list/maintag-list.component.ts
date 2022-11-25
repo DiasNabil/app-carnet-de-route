@@ -1,18 +1,18 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+import { Component, Input, OnInit } from '@angular/core';
+import { NotesService } from 'src/app/note/services/note.service';
+import { Note } from 'src/app/note/models/note.model';
+import { ActivatedRoute, Router, RouterState } from '@angular/router'; 
+import { trigger, transition, style, animate, query, stagger } from '@angular/animations'
 
-import { NotesService } from 'src/app/services/note.service';
-import { Note } from 'src/app/models/note.model';
 
 @Component({
-  selector: 'app-note-list',
-  templateUrl: './note-list.component.html',
-  styleUrls: ['./note-list.component.scss'],
+  selector: 'app-maintag-list',
+  templateUrl: './maintag-list.component.html',
+  styleUrls: ['./maintag-list.component.scss'],
   animations: [
-    // animation d'apparition
     trigger('itemAnim', [
- 
+
+      // animation d'apparition 
       transition('void=> *', [
         style({
           height: 0,
@@ -75,43 +75,41 @@ import { Note } from 'src/app/models/note.model';
           optional: true
         })
       ])
-    ])
+    ]),
   ]
 })
 
 
-export class NoteListComponent implements OnInit{
+export class MainTagListComponent implements OnInit{
 
+  mainTag: {tag: string, array: Note[]}[]
 
-  /**
-   * @property noteList liste des notes à afficher selon le tag selectionné
-   */
-  noteList: Note[]
+  path: any
+  
+  
+  constructor(private notesService: NotesService, private router: Router, private route: ActivatedRoute){}
 
-  constructor(private notesService: NotesService,  private route: ActivatedRoute, private router: Router){
-
-    /**fix bug search bar: permet d'enchainer les recherche sans actualiser la page
-     * par contre pas compris comment fonctionne la fct shouldReuseRoute
-     */
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-  }
 
   ngOnInit(): void {
+    this.mainTag = []  
+    this.path = this.route.routeConfig?.path
+    
+      
+      if(this.path === 'tag'){
+        this.mainTag = this.notesService.getAllNotesByTag()
+      }else{
+        this.mainTag.push({tag:'to assign', array: this.notesService.getNoteWoTag()})
+        this.getMainTag('prog')
+        this.getMainTag('figure')
+        this.getMainTag('macro')
+        this.mainTag.push({tag:'all notes', array: this.notesService.getAllNotes()})
+      }
+  }
 
-    const tag = this.route.snapshot.params['tag']
-    if(tag === 'all'){
-      this.noteList = this.notesService.getAllNotes()
+  getMainTag(tag: string){
 
-    }else if (tag === 'notag'){
-      this.noteList = this.notesService.getNoteWoTag()
-      console.log(this.noteList)
-
-    }else {
-      this.noteList = this.notesService.getByTag(tag).array
-      console.log(this.noteList)
-
-    }
-
+    let arrayOfTag = this.notesService.getByTag(tag)
+    this.mainTag.push(arrayOfTag)
   }
 
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Note } from 'src/app/models/note.model';
+import { Note } from 'src/app/note/models/note.model';
 
 @Injectable({
 

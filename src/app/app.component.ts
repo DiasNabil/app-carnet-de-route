@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { NotesService } from './services/note.service';
+import { NotesService } from './note/services/note.service';
 
 /**
  * @Component decorateur qui permet de construire un composent web 
