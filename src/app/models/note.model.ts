@@ -1,4 +1,6 @@
-
+/**
+ * @class Note 
+ */
 
 export class Note {
     id: number;

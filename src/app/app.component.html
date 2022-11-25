@@ -1,11 +1,11 @@
 <div class="layout-box">
 
-    <header><h1 routerLink="/">CARNET DE ROUTE</h1></header>
+    <header><h1 (click)='redirect()' >CARNET DE ROUTE</h1></header>
 
     <div class="page-content">
 
         <div class="search-bar">
-            <input type="text" (change)="test($event)" placeholder="filtre par tag">
+            <input type="text" #searchbar (keyup)="search(searchbar.value)" placeholder="filtre par tag">
         </div>
     
         <router-outlet></router-outlet>

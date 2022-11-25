@@ -8,6 +8,9 @@ import { Note } from 'src/app/models/note.model';
 
 export class NotesService{
 
+    /**
+     * @prop arrayNotes tableau de toute les notes
+     */
     arrayNotes: Note[] = [
         {
             id:0,
@@ -115,17 +118,27 @@ export class NotesService{
         },
     ]
 
-
+    /**
+     * 
+     * @returns le tableau de toute les notes
+     */
     getAllNotes(){
         return this.arrayNotes
     }
 
-
+    /**
+     * 
+     * @returns un tableau de toute les notes qui n'ont pas de tag
+     */
     getNoteWoTag(){
         return this.getAllNotes().filter(note => note.tag.length === 0)
     }
 
-
+    /**
+     * 
+     * @param tag 
+     * @returns un objet {nom du tag, array des notes ayant ce tag}
+     */
     getByTag(tag: string){
         
         let notesBytag: Note[] = this.arrayNotes.filter(note => note.tag.find(elem => elem === tag))
@@ -137,26 +150,41 @@ export class NotesService{
         return {tag: tag, array: notesBytag}
     }
 
+    /**
+     * 
+     * @param index de la note recherché
+     * @returns la note correspondant a l'index
+     */
     getByIndex(index :number){
         return this.arrayNotes[index]
     }
-
+    
+    /**
+     * 
+     * @param note 
+     * @returns retourne l'index de la note passé en param
+     */
     getIndexOfNote(note: Note){
         return this.arrayNotes.indexOf(note)
     }
 
+
+    /**
+     * 
+     * @param note qu'on souhaite ajouter a la liste de toute les notes
+     * @param tag suite de caractere pris dans le input converti en tableau
+     * @returns id de la note
+     */
     addNote(note: Note, tag:Array<string>){
-        /** ajouter une note dans le arrayNotes et retourner l'id de la note
-         * en sachant que id = index
-         * 
+
+        /** 
          * title et tag sont assignés dès l'ajout le reste se fera a l'update
          */
         note.title = new Date()
         note.tag = tag
         
-
-        let newLength = this.arrayNotes.push(note)
         /** la fonction push return la longueur du tableau apres avoir ajouter note */
+        let newLength = this.arrayNotes.push(note)
 
         /** -1 car l'index demarre de 0 et id = index */
         let id = newLength - 1
@@ -165,16 +193,26 @@ export class NotesService{
         return id 
     }
 
+    /**
+     * 
+     * @param id de la note a maj
+     * @param tag suite de caractere pris de le input tag converti en tableau
+     * @param content suite de caractere pris dans le input content
+     */
     update(id:number, tag: Array<string>, content: string){
         let note = this.arrayNotes[id];
 
         note.content = content
         note.tag = tag
-        
     }
 
+    /**
+     * 
+     * @param id de la note a supprimer
+     */
     delete(id: number){
         this.arrayNotes.splice(id, 1)
+        this.getAllNotes().forEach(note => note.id = this.getIndexOfNote(note))
     }
 
     /**
@@ -191,7 +229,10 @@ export class NotesService{
         return Array.from(arrTag)
     }
 
-    
+    /**
+     * 
+     * @returns un tableau de tout les tag existant
+     */
     getArrOfAllTag(){
         let allTag:string[] = []
 
@@ -201,14 +242,20 @@ export class NotesService{
         
 
         let sansDouble:Set<string> = new Set()
-
+        /**l'objet set stock des valeurs uniques
+         * donc on sort un objet set avec tout les tag sans doublons
+         * puis on le converti en tableau pour pouvoir le manipuler
+          */
         allTag.forEach(tag => sansDouble.add(tag))
 
 
         return Array.from(sansDouble)
-    
     }
 
+    /**
+     * 
+     * @returns un tableau d'objet qui regroupe toute les notes par tag [...{tag, [notes avec ce tag]}]
+     */
     getAllNotesByTag(){
         let allTag:{tag: string, array: Note[]}[]=[]
 

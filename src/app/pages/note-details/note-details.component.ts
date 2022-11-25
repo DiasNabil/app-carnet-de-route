@@ -32,11 +32,15 @@ export class NoteDetailsComponent implements OnInit{
       this.note = new Note()
 
       if(params['id']){
+        /** retourne les informations de la note selectionné 
+         * converti le tableau de tag en string et les affiche dans le input tag
+         */
         let getTag = this.notesService.getByIndex(params['id']).tag.join(' ')
         this.tagString = getTag
         this.note = this.notesService.getByIndex(params['id'])
         this.noteId = params['id']
         this.isNew = false
+
       } else {
         this.isNew = true
 
@@ -47,8 +51,13 @@ export class NoteDetailsComponent implements OnInit{
      
   }
 
+  /**
+   * @method onSubmit permet d'ajouter la note au tableau de toute les notes
+   * @param form nouvelle note 
+   */
+
   onSubmit(form: NgForm){
-  
+  /** convertis les caractere dans le input tag en tableau de caractere */
     let tag: Array<string> = this.notesService.tagsToArray(this.tagString)
 
     this.notesService.addNote(form.value, tag)

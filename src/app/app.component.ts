@@ -27,13 +27,14 @@ export class AppComponent implements OnInit {
     
   }
 
-  test(string: any){
-    let test: string
-    
-    
-    test = string.target.value.toLowerCase().trim()
-    this.router.navigateByUrl(test)
-    console.log(test)
+  search(string: String){
+  
+    this.router.navigateByUrl(string.toLowerCase().trim())
+    console.log(string)
 
+  }
+
+  redirect(){
+    this.router.navigateByUrl('/')
   }
 }

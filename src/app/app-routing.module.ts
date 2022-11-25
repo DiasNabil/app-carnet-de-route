@@ -5,11 +5,11 @@ import { NoteDetailsComponent } from './pages/note-details/note-details.componen
 import { NoteListComponent } from './pages/note-list/note-list.component';
 
 const routes: Routes = [
-  {path:'', component: MainTagListComponent},
   {path:'tag', component: MainTagListComponent},
   {path: 'new', component: NoteDetailsComponent},
+  {path: ':tag/:id', component: NoteDetailsComponent},
   {path: ':tag', component: NoteListComponent},
-  {path: ':tag/:id', component: NoteDetailsComponent}
+  {path:'', component: MainTagListComponent}
 
   
   

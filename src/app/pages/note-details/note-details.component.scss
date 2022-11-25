@@ -2,7 +2,8 @@
     background: #dfdfdf;
     border-radius: 5px;
     box-shadow: 0px 1px 2em rgba($color: #2b2c2e, $alpha: 0.3);
-    width: 40%;
+    width: 90%;
+    
 
 
     margin: 1.5rem auto;
@@ -14,9 +15,9 @@
         transform: scale(0.98);
         box-shadow: 0px 5px 1em rgba($color: #2b2c2e, $alpha: 0.5);
 
-        .delete-button{
+        /*.delete-button{
             opacity: 1;
-        }
+        }*/
         
     }
     
@@ -127,7 +128,8 @@
         cursor: pointer;
         color: rgba($color: #2b2c2e, $alpha: 0.5);
         transition: 500ms;
-        opacity: 0;
+        //opacity: 0;
+        
 
         &:hover{
             color: rgba($color: #9e0909, $alpha: 0.8);
