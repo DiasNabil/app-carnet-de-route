@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Note } from '../../../note/models/note.model';
+import { Note } from '../../../models/note.model';
 import { NotesService } from 'src/app/note/services/note.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -26,12 +26,10 @@ export class NoteCardComponent {
 onClickDelete(){
 if(this.route.snapshot.params['tag']==='all'){
   this.notesService.delete(this.noteList.indexOf(this.note))
-  console.log(this.notesService.arrayNotes)
 
 }else{
-  this.notesService.delete(this.notesService.arrayNotes.indexOf(this.note))
+  this.notesService.delete(this.notesService.getAllNotes().indexOf(this.note))
   this.noteList.splice(this.noteList.indexOf(this.note),1)
-  console.log(this.notesService.arrayNotes)
 
 }
 }

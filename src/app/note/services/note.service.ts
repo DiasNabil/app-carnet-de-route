@@ -1,129 +1,57 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, of, tap, catchError } from 'rxjs';
 import { Note } from 'src/app/note/models/note.model';
+import { NOTES } from '../mock-notes-list';
+
 
 @Injectable({
 
     providedIn: 'root'
+    
 })
 
 export class NotesService{
 
+    constructor(private http: HttpClient){}
+
     /**
-     * @prop arrayNotes tableau de toute les notes
+     * affiche en console les données retourné apres une requete 
+     * @param response 
      */
-    arrayNotes: Note[] = [
-        {
-            id:0,
-            title: new Date(),
-            tag: ['prog', 'ring'],
-            content: "ce que j'ai fait ce jour ",
-        },
-    
-        {
-            id:1,
-            title: new Date(),
-            tag: ['prog', 'ring'],
-            content: "ce que j'ai fait ce jour",
-        },
-    
-        {
-            id:2,
-            title: new Date(),
-            tag: ['prog', 'legs'],
-            content: "ce que j'ai fait ce jour",
-        },
-    
-        {
-            id:3,
-            title: new Date(),
-            tag: ['prog', 'ring'],
-            content: "ce que j'ai fait ce jour",
-        },
-    
-        {
-            id:4,
-            title: new Date(),
-            tag: ['figure', 'plank'],
-            content: "j'ai fait plank ce jour",
-        },
-    
-        {
-            id:5,
-            title: new Date(),
-            tag: ['figure', 'handstand'],
-            content: "j'ai fait handstand ce jour",
-        },
-    
-        {
-            id:6,
-            title: new Date(),
-            tag: ['figure', 'handstand'],
-            content: "j'ai fait handstand ce jour",
-        },
-    
-        {
-            id:7,
-            title: new Date(),
-            tag: [],
-            content: "j'ai fait l-sit ce jour",
-        },
-    
-        {
-            id:8,
-            title: new Date(),
-            tag: ['macro'],
-            content: "ce que j'ai mangé ce jour",
-        },
-    
-        {
-            id:9,
-            title: new Date(),
-            tag: [],
-            content: "ce que j'ai mangé ce jour",
-        },
-    
-        {
-            id:10,
-            title: new Date(),
-            tag: ['macro'],
-            content: "ce que j'ai mangé ce jour",
-        },
-    
-        {
-            id:11,
-            title: new Date(),
-            tag: [],
-            content: "ce que j'ai mangé ce jour",
-        },
+    private log(response: Note[]|Note|undefined){
+        console.table(response)
+    }
 
-        {
-            id:12,
-            title: new Date(),
-            tag: [],
-            content: "ce que j'ai mangé ce jour",
-        },
-
-        {
-            id:13,
-            title: new Date(),
-            tag: ['macro'],
-            content: "ce que j'ai mangé ce jour",
-        },
-
-        {
-            id:14,
-            title: new Date(),
-            tag: ['macro'],
-            content: "ce que j'ai mangé ce jour",
-        },
-    ]
+    private handleErr(error: Error , errorValue: any){
+        console.error(error)
+        return of(errorValue)
+    }
 
     /**
      * 
      * @returns le tableau de toute les notes
      */
-    getAllNotes(){
-        return this.arrayNotes
+    /** obsOnNoteList(): Observable<Note[]> {
+        
+         * requete get avec .http => on recoit un observable qui contient une liste de note, en param c'est l'url a qui on fait la demande
+         * tap : equivalent de console.log pour observable, il interragit pas avec le flux de donné
+         * catchError pour capturer l'erreur et qui retourne un tableau vide pour ne pas crasher l'app 
+        
+
+        return this.http.get<Note[]>('api/notes').pipe(
+            tap(noteList => this.log(noteList)),
+            catchError((error)=>this.handleErr(error, []))
+        )
+
+        ne retourne pas le tableau debut de solution : https://stackoverflow.com/questions/46769042/subscribe-to-observable-is-returning-undefined
+    }*/
+
+    getAllNotes():Note[]{
+        let array: Note[]=[]
+        //console.log(this.obsOnNoteList().subscribe(noteList => noteList = array))
+        console.log(array)
+        return NOTES
     }
 
     /**
@@ -131,7 +59,9 @@ export class NotesService{
      * @returns un tableau de toute les notes qui n'ont pas de tag
      */
     getNoteWoTag(){
-        return this.getAllNotes().filter(note => note.tag.length === 0)
+        
+       return  this.getAllNotes().filter(note => note.tag.length === 0)
+
     }
 
     /**
@@ -141,7 +71,7 @@ export class NotesService{
      */
     getByTag(tag: string){
         
-        let notesBytag: Note[] = this.arrayNotes.filter(note => note.tag.find(elem => elem === tag))
+        let notesBytag: Note[] = this.getAllNotes().filter(note => note.tag.find(elem => elem === tag))
         
         notesBytag.forEach(note=>note.tag.sort((a,b)=>{
                             if(b===tag){return 1}else return -1
@@ -156,7 +86,7 @@ export class NotesService{
      * @returns la note correspondant a l'index
      */
     getByIndex(index :number){
-        return this.arrayNotes[index]
+        return this.getAllNotes()[index]
     }
     
     /**
@@ -165,7 +95,7 @@ export class NotesService{
      * @returns retourne l'index de la note passé en param
      */
     getIndexOfNote(note: Note){
-        return this.arrayNotes.indexOf(note)
+        return this.getAllNotes().indexOf(note)
     }
 
 
@@ -184,7 +114,7 @@ export class NotesService{
         note.tag = tag
         
         /** la fonction push return la longueur du tableau apres avoir ajouter note */
-        let newLength = this.arrayNotes.push(note)
+        let newLength = this.getAllNotes().push(note)
 
         /** -1 car l'index demarre de 0 et id = index */
         let id = newLength - 1
@@ -200,7 +130,7 @@ export class NotesService{
      * @param content suite de caractere pris dans le input content
      */
     update(id:number, tag: Array<string>, content: string){
-        let note = this.arrayNotes[id];
+        let note = this.getAllNotes()[id];
 
         note.content = content
         note.tag = tag
@@ -211,7 +141,7 @@ export class NotesService{
      * @param id de la note a supprimer
      */
     delete(id: number){
-        this.arrayNotes.splice(id, 1)
+        this.getAllNotes().splice(id, 1)
         this.getAllNotes().forEach(note => note.id = this.getIndexOfNote(note))
     }
 
@@ -236,7 +166,7 @@ export class NotesService{
     getArrOfAllTag(){
         let allTag:string[] = []
 
-        this.arrayNotes.forEach(note=>allTag= allTag.concat(note.tag))
+        this.getAllNotes().forEach(note=>allTag= allTag.concat(note.tag))
         allTag.sort((a,b)=>a.localeCompare(b,'fr'))
 
         

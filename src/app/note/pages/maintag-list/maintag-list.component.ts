@@ -93,7 +93,6 @@ export class MainTagListComponent implements OnInit{
   ngOnInit(): void {
     this.mainTag = []  
     this.path = this.route.routeConfig?.path
-    
       
       if(this.path === 'tag'){
         this.mainTag = this.notesService.getAllNotesByTag()

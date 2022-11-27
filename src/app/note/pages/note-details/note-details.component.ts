@@ -15,10 +15,10 @@ import { NotesService } from 'src/app/note/services/note.service';
 export class NoteDetailsComponent implements OnInit{
 
   date: Date = new Date()
-  note: Note
   noteId : number
   isNew: boolean
-
+  
+  note: Note
   tagString: string
 
   constructor(private notesService:NotesService, private router: Router, private route: ActivatedRoute){}

@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import {registerLocaleData} from '@angular/common'
 import * as fr from '@angular/common/locales/fr'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http'
+import { HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api'
 
 
 /** formulaire angular avec directive propre au fomulaire, permet de convertir les <form> en {formulaire} angular */
@@ -11,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoteModule } from './note/note.module';
+import { InMemoryNotesService } from './note/services/in-memory-notes.service';
 
 
 
@@ -22,10 +25,11 @@ import { NoteModule } from './note/note.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NoteModule,
     FormsModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryNotesService, {dataEncapsulation: false}),
     BrowserAnimationsModule,
-    
+    NoteModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR'}
