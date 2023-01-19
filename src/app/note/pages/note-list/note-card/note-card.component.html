@@ -1,7 +1,7 @@
 <div class="note-card-container" >
 
-    <div class="note-card-content" [routerLink]="note.id.toString()">
-        <h1 class="note-card-title">{{note.title | date}}</h1>
+    <div class="note-card-content" [routerLink]="noteIndex">
+        <h1 class="note-card-title">{{note.date | date}}</h1>
         <h2 class="note-card-title">{{note.tag.join(' - ')}}</h2>
 
 

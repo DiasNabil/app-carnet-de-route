@@ -12,7 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const noteRoutes: Routes = [
-  {path: 'tag', component: MainTagListComponent},
+  {path: 'tags', component: MainTagListComponent},
   {path: 'new', component: NoteDetailsComponent},
   {path: ':tag/:id', component: NoteDetailsComponent},
   {path: ':tag', component: NoteListComponent},
