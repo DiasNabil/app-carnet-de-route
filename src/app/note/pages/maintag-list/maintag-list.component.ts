@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { NotesService } from "src/app/note/services/note.service";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import {
   trigger,
   transition,
@@ -102,14 +102,13 @@ import { Note } from "../../models/Note.model";
   ],
 })
 export class MainTagListComponent implements OnInit {
-  path: string | undefined;
+  path?: string;
   mainTag: Array<Tag>;
   allNotes: Array<Note>;
   main: Array<string>;
 
   constructor(
     private notesService: NotesService,
-    private router: Router,
     private route: ActivatedRoute
   ) {}
 

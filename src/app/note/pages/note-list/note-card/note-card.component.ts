@@ -16,8 +16,8 @@ export class NoteCardComponent {
    * le composant note-list
    */
   @Input() note: Note;
-  @Input() noteList: Note[] | undefined;
-  noteIndex: string | undefined;
+  @Input() noteList?: Note[];
+  noteIndex?: string;
  
 
 

@@ -105,7 +105,7 @@ export class NoteListComponent implements OnInit {
   /**
    * @property noteList liste des notes à afficher selon le tag selectionné
    */
-  noteList: Note[] | undefined;
+  noteList?: Note[];
 
   constructor(
     private notesService: NotesService,

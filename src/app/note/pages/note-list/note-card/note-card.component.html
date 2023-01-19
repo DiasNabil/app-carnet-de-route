@@ -1,18 +1,14 @@
-<div class="note-card-container" >
+<div class="note-card-container">
+  <div class="note-card-content" [routerLink]="noteIndex">
+    <h1 class="note-card-title">{{ note.date | date }}</h1>
+    <h2 class="note-card-title">{{ note.tag.join(" - ") }}</h2>
 
-    <div class="note-card-content" [routerLink]="noteIndex">
-        <h1 class="note-card-title">{{note.date | date}}</h1>
-        <h2 class="note-card-title">{{note.tag.join(' - ')}}</h2>
+    <div class="note-card-body">
+      <p>{{ note.content }}</p>
 
-
-        <div class="note-card-body">
-            <p>{{note.content}}</p>
-            
-            <div class="fade-out"></div>
-
-        </div>
-
+      <div class="fade-out"></div>
     </div>
+  </div>
 
-    <button (click)="onClickDelete()" class="delete-button">X</button>
+  <button (click)="onClickDelete()" class="delete-button">X</button>
 </div>

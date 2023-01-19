@@ -1,10 +1,10 @@
 import { Note } from "./Note.model";
 
 /**
- * @class Tag 
+ * @class Tag
  */
 
 export class Tag {
-    name: string;
-    notes: Array<Note>;
+  name: string;
+  notes: Array<Note>;
 }

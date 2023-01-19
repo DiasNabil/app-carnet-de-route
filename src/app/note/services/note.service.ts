@@ -1,13 +1,10 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient} from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import {
   Observable,
   of,
   tap,
   catchError,
-  map,
-  Subscription,
-  filter,
 } from "rxjs";
 
 import { Tag } from "../models/Tag.model";
