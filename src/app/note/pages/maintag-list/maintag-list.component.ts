@@ -135,7 +135,6 @@ export class MainTagListComponent implements OnInit {
           this.allNotes = noteList;
         } else {
           this.allNotes = [];
-          console.log(this.allNotes.length);
         }
 
         this.mainTag.push({ name: "all notes", notes: this.allNotes });

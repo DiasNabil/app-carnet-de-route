@@ -9,12 +9,14 @@ import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "../app-routing.module";
 import { RouterModule, Routes } from "@angular/router";
+import { AuthGuard } from "../auth.guard";
 
 const noteRoutes: Routes = [
-  { path: "tags", component: MainTagListComponent },
-  { path: "new", component: NoteDetailsComponent },
-  { path: ":tag/:id", component: NoteDetailsComponent },
-  { path: ":tag", component: NoteListComponent },
+  { path: "home", component: MainTagListComponent, canActivate: [AuthGuard] },
+  { path: "tags", component: MainTagListComponent,canActivate: [AuthGuard]},
+  { path: "new", component: NoteDetailsComponent, canActivate: [AuthGuard]},
+  { path: ":tag/:id", component: NoteDetailsComponent, canActivate: [AuthGuard]},
+  { path: ":tag", component: NoteListComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-
-import { NotesService } from "./note/services/note.service";
+import { Router } from "@angular/router";
+import { debounceTime, distinctUntilChanged, Subject, switchMap } from "rxjs";
+import { AuthService } from "./auth.service";
 
 /**
  * @Component decorateur qui permet de construire un composent web
@@ -17,19 +17,27 @@ import { NotesService } from "./note/services/note.service";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
+  auth: AuthService
+
   constructor(
-    private notesService: NotesService,
     private router: Router,
-    private route: ActivatedRoute
+    private authService: AuthService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.auth = this.authService
+  }
 
   search(string: String) {
-    this.router.navigateByUrl(string.toLowerCase().trim());
+    let word = string.toLowerCase().trim()
+    if (word == '') {
+      this.router.navigateByUrl('home')
+    }else {
+      this.router.navigateByUrl(word)
+    }
   }
 
   redirect() {
-    this.router.navigateByUrl("/");
+    this.router.navigateByUrl("/home");
   }
 }

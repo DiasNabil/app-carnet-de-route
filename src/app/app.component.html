@@ -2,7 +2,7 @@
   <header><h1 (click)="redirect()">CARNET DE ROUTE</h1></header>
 
   <div class="page-content">
-    <div class="search-bar">
+    <div class="search-bar" *ngIf="auth.isLoggedIn">
       <input
         type="text"
         #searchbar

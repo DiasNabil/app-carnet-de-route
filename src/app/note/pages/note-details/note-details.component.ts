@@ -26,15 +26,8 @@ export class NoteDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    /**
-     * controle si on accede au composant note-details par un ajout ou une modification d'une note deja existante
-     */
-
     this.route.params.subscribe((params: Params) => {
       if (params["id"]) {
-        /** retourne les informations de la note selectionné
-         * converti le tableau de tag en string et les affiche dans le input tag
-         */
         this.isNew = false;
         if (params["tag"] === "all") {
           this.notesService.GetAllNotes().subscribe((noteList) => {
@@ -75,6 +68,9 @@ export class NoteDetailsComponent implements OnInit {
 
   onSubmit() {
     let data: any = this.note;
+    data.exercises.forEach((exo: any) => {
+      exo.exercise = exo.exercise.toLowerCase();
+    });
 
     if (this.isNew === true) {
       data.tag = this.tagString;
@@ -84,7 +80,7 @@ export class NoteDetailsComponent implements OnInit {
         console.log(note, "note ajoutée avec succés");
       });
 
-      this.router.navigateByUrl("/");
+      this.router.navigateByUrl("/home");
     } else {
       data.tag = data.tag.join(" ");
       data = JSON.stringify(data);
@@ -92,7 +88,7 @@ export class NoteDetailsComponent implements OnInit {
         console.log(note, "note modifiée avec succés");
       });
 
-      this.router.navigateByUrl("/");
+      this.router.navigateByUrl("/home");
     }
   }
 
@@ -103,5 +99,7 @@ export class NoteDetailsComponent implements OnInit {
   addEx() {
     let ex = new Exercise();
     this.exercises.push(ex);
+
+    console.log(this.note.exercises);
   }
 }

@@ -157,6 +157,4 @@ export class NoteListComponent implements OnInit {
       });
     }
   }
-
-  // faire des fonction pour factoriser ce composant
 }
