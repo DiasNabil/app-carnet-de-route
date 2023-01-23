@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { NotesService } from "src/app/note/services/note.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import {
   trigger,
   transition,
@@ -9,16 +8,17 @@ import {
   query,
   stagger,
 } from "@angular/animations";
-import { Tag } from "../../models/Tag.model";
+
+import { NotesService } from "src/app/note/services/note.service";
 import { Note } from "../../models/Note.model";
 
 @Component({
-  selector: "app-maintag-list",
-  templateUrl: "./maintag-list.component.html",
-  styleUrls: ["./maintag-list.component.scss"],
+  selector: "app-note-list",
+  templateUrl: "./note-list.component.html",
+  styleUrls: ["./note-list.component.scss"],
   animations: [
+    // animation d'apparition
     trigger("itemAnim", [
-      // animation d'apparition
       transition("void=> *", [
         style({
           height: 0,
@@ -101,43 +101,59 @@ import { Note } from "../../models/Note.model";
     ]),
   ],
 })
-export class MainTagListComponent implements OnInit {
-  path?: string;
-  mainTag: Array<Tag>;
-  allNotes: Array<Note>;
-  main: Array<string>;
+export class NoteListComponent implements OnInit {
+  /**
+   * @property noteList liste des notes à afficher selon le tag selectionné
+   */
+  noteList?: Note[];
 
   constructor(
     private notesService: NotesService,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    /**fix bug search bar: permet d'enchainer les recherche sans actualiser la page
+     * par contre pas compris comment fonctionne la fct shouldReuseRoute
+     */
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
   ngOnInit(): void {
-    this.mainTag = [];
-    this.path = this.route.routeConfig?.path;
-    this.main = ["push", "pull", "legs", "figures"];
+    const tag = this.route.snapshot.params["tag"];
 
-    if (this.path === "tags") {
-      this.notesService.GetAllByTag().subscribe((tagList) => {
-        this.mainTag = tagList;
+    if (tag === "all") {
+      this.notesService.GetAllNotes().subscribe((noteList) => {
+        this.noteList = noteList;
       });
     } else {
-      this.notesService.GetAllByTag().subscribe((tagList) => {
-        tagList.forEach((Tag) => {
-          if (this.main.includes(Tag.name)) {
-            this.mainTag.push(Tag);
-          }
-        });
-      });
-
-      this.notesService.GetAllNotes().subscribe((noteList) => {
-        if (Array.isArray(noteList)) {
-          this.allNotes = noteList;
+      this.notesService.GetAllByTag().subscribe((Tags) => {
+        if (Tags.find((Tag) => Tag.name === tag)) {
+          this.noteList = Tags.find((Tag) => Tag.name === tag)?.notes;
         } else {
-          this.allNotes = [];
+          this.noteList = [];
+          console.log("pas de tag");
         }
+      });
+    }
+  }
 
-        this.mainTag.push({ name: "all notes", notes: this.allNotes });
+  deletedNote(note: Note) {
+    const tag = this.route.snapshot.params["tag"];
+
+    if (tag === "all") {
+      this.notesService.GetAllNotes().subscribe((noteList) => {
+        this.noteList = noteList;
+        console.log(this.noteList);
+      });
+    } else {
+      this.notesService.GetAllByTag().subscribe((Tags) => {
+        if (Tags.find((Tag) => Tag.name === tag)) {
+          this.noteList = Tags.find((Tag) => Tag.name === tag)?.notes;
+          console.log(this.noteList);
+        } else {
+          this.noteList = [];
+          console.log("pas de tag");
+        }
       });
     }
   }

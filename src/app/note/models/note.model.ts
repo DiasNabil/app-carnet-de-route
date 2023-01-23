@@ -1,10 +1,13 @@
 /**
- * @class Note 
+ * @class Note
  */
 
+import { Exercise } from "./Exercise.model";
+
 export class Note {
-    id: number;
-    title: Date;
-    tag: Array<string>;
-    content: string;
+  id: number;
+  tag: Array<string>;
+  content: string;
+  date: Date;
+  exercises: Array<Exercise>;
 }

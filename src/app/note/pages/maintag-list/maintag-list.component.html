@@ -1,12 +1,13 @@
 <div class="main-container">
+  <div class="notes-list" [@listAnim]>
+    <app-tag-card
+      *ngFor="let tag of mainTag"
+      [byTag]="tag"
+      [@itemAnim]
+    ></app-tag-card>
+  </div>
 
-    
-    <div class="notes-list" [@listAnim]>
-        <app-tag-card *ngFor="let tag of mainTag" [byTag]="tag" [@itemAnim]></app-tag-card>
-        
-    </div>
-
-    
-    <button class="addnote" *ngIf="path === ''" routerLink="new"> <i class='bx bx-plus'></i> </button>
-    
+  <button class="addnote" *ngIf="path === 'home'" routerLink="../new">
+    <i class="bx bx-plus"></i>
+  </button>
 </div>

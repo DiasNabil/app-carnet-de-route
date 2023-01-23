@@ -93,6 +93,32 @@
                 }
                 
             }
+
+            .exercises{
+                display: flex;
+                font-size: 1.25rem;
+                margin-bottom: 2rem;
+                
+                label{
+                    margin-right: 0.25rem;
+                }
+                .exercise{
+                    width: 8rem;
+                }
+                input{
+                    width: 2rem;
+                    margin-right: 2rem;
+                }
+            }
+
+            .add{
+                font-size: 1.25rem;
+                color: black;
+                
+                cursor: pointer;
+                background:none;
+                border: none;
+            }
         }
 
         .save-btn{

@@ -1,0 +1,39 @@
+#block{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        label{
+            font-size: 1.25rem;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        input{
+            text-align: center;
+        }
+    }
+
+    button{
+        color: black;
+        border: none;
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        cursor: pointer;
+        background:none;
+    }
+}
+
+
+

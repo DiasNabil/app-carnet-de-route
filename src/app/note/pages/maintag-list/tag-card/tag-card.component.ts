@@ -1,43 +1,32 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
-import {Router} from '@angular/router'
+import { Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { Tag } from "src/app/note/models/Tag.model";
 
-import { NotesService } from '../../../services/note.service';
-import { Note } from 'src/app/note/models/note.model';
-
-
+import { NotesService } from "../../../services/note.service";
 
 @Component({
-  selector: 'app-tag-card',
-  templateUrl: './tag-card.component.html',
-  styleUrls: ['./tag-card.component.scss']
+  selector: "app-tag-card",
+  templateUrl: "./tag-card.component.html",
+  styleUrls: ["./tag-card.component.scss"],
 })
-export class TagCardComponent implements OnInit{
+export class TagCardComponent implements OnInit {
+  @Input() byTag: Tag;
 
-  @Input() byTag: {tag: string, array: Note[]}
+  tagName: string;
+  nbNote: number;
 
-  tagName: string 
-  nbNote: number
+  constructor(private router: Router) {}
 
-  constructor(private notesService: NotesService, private router: Router){}
-  
   ngOnInit(): void {
-
-   this.tagName = this.byTag.tag
-   this.nbNote = this.byTag.array.length
-   
+    this.tagName = this.byTag.name;
+    this.nbNote = this.byTag.notes.length;
   }
 
-  onClickTagCard(){
-    if(this.tagName === 'to assign'){
-      this.router.navigateByUrl(`notag`)
-
-    }else if(this.tagName === 'all notes'){
-      this.router.navigateByUrl(`all`)
-
-    }else{
-      this.router.navigateByUrl(`${this.tagName}`)
+  onClickTagCard() {
+    if (this.tagName === "all notes") {
+      this.router.navigateByUrl(`all`);
+    } else {
+      this.router.navigateByUrl(`${this.tagName}`);
     }
   }
-
-  
 }

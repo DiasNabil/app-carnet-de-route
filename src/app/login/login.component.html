@@ -1,0 +1,10 @@
+<div id="block">
+    <p>{{message}}</p>
+    <form #loginForm="ngForm">
+        <input type="password" id="password" [(ngModel)] ='password' name="password" required>
+    </form>
+    
+    <button (click)="login()">
+        ENTRER
+    </button>
+</div>

@@ -1,27 +1,86 @@
-<div class="form-container">
+<div *ngIf="note !== undefined" class="form-container">
+  <div class="note-card-content">
+    <h1 class="note-card-title" *ngIf="isNew === true">{{ date | date }}</h1>
+    <h1 class="note-card-title" *ngIf="isNew === false">
+      {{ note.date | date }}
+    </h1>
 
-    <div class="note-card-content">
-        <h1 class="note-card-title" *ngIf="isNew === true">{{date | date}}</h1>
-        <h1 class="note-card-title" *ngIf="isNew === false">{{note.title | date}}</h1>
+    <form #noteForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="field">
+        <label>Tag:</label>
+        <input
+          type="text"
+          name="tag"
+          [(ngModel)]="tagString"
+          required
+          class="tag"
+        />
+      </div>
 
-        <form #noteForm="ngForm" (ngSubmit)="onSubmit(noteForm)">
-            <div class="field">
-                <label>Tag:</label>
-                <input type="text" name="tag" [(ngModel)]='tagString' (change)="updateTag(tagString)" required class="tag">
-            </div>
+      <div class="field">
+        <label>Observation:</label>
+        <textarea
+          class="textarea"
+          name="content"
+          [(ngModel)]="note.content"
+        ></textarea>
+      </div>
 
-            <div class="field">
-                <label>Text:</label>
-                <textarea class="textarea" name="content" [(ngModel)] ="note.content"></textarea>
-            </div>
+      <div
+        ngModelGroup="ex"
+        *ngFor="
+          let exercise of note.exercises;
+          let i = index;
+          trackBy: trackByIndex
+        "
+        class="exercises"
+      >
+        <label>Exercice: </label>
+        <input
+          type="text"
+          name="{{ note.exercises[i].id }} exercise"
+          class="exercise"
+          required
+          [(ngModel)]="exercises[i].exercise"
+        />
 
-            <button *ngIf="isNew===true" class="save-btn" type="submit" [disabled]="!noteForm.valid">SAVE</button>
-        </form>
-        
-    </div>
+        <label>Reps:</label>
+        <input
+          type="text"
+          name="{{ note.exercises[i].id }} reps"
+          required
+          [(ngModel)]="exercises[i].reps"
+        />
 
+        <label>Series:</label>
+        <input
+          type="text"
+          name="{{ note.exercises[i].id }} sets"
+          required
+          [(ngModel)]="exercises[i].sets"
+        />
+      </div>
+      <button type="button" class="add" (click)="addEx()">add exercise</button>
 
-    <button class="delete-button" routerLink="../" type="button">X</button>
-    
+      <button
+        *ngIf="isNew === true"
+        class="save-btn"
+        type="submit"
+        [disabled]="!noteForm.valid"
+      >
+        SAVE
+      </button>
+      <button
+        *ngIf="isNew === false"
+        class="save-btn"
+        type="submit"
+        [disabled]="!noteForm.valid"
+      >
+        UPDATE
+      </button>
+    </form>
+  </div>
 
+  <button *ngIf="isNew === false" class="delete-button" routerLink="../" type="button">X</button>
+  <button *ngIf="isNew === true" class="delete-button" routerLink="../home" type="button">X</button>
 </div>

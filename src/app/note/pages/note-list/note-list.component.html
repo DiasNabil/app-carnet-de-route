@@ -1,0 +1,11 @@
+<div class="main-container">
+  <div class="notes-list" [@listAnim]>
+    <app-note-card
+      *ngFor="let note of noteList"
+      [noteList]="noteList"
+      [note]="note"
+      (onDeleteNote)="deletedNote($event)"
+      [@itemAnim]
+    ></app-note-card>
+  </div>
+</div>
